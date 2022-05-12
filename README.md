@@ -2,24 +2,28 @@
 
 This utility counts `import`s of the `tensorflow` module within Python codebases hosted remotely within public GitHub repositories.
 
+The tool analyzes one repository at a time.
+
 ## Use
 This section describes how to use the tool.
 
 ### Virtual Machine
 
-Vagrant serves the purpose of surves the purpose of virtual machine (VM) provisioning in order to maximize portability among development environments and reduce overhead associated with environmental configuration.
+Vagrant serves the purpose of virtual machine (VM) provisioning in order to maximize portability among development environments and to reduce overhead associated with environmental configuration.
+
+Vagrant uses an infrastructure-as-code approach, where the VM is described declaratively in the `Vagrantfile` stored at root.
 
 The virtual machine is configured with filesystem transparency with respect to the host (i.e., your machine), meaning changes made to the local filesystem are reflected on the VM and vise versa. In other words, any changes you make to the repository will persist on the host.
 
-All necessary dependencies are included in a dynamically built linux virtual machine.
+All necessary dependencies (e.g., Python) are included in a dynamically built Linux virtual machine.
 
 #### Requirements
 
-Development dependencies are limited to [vagrant](https://www.vagrantup.com) and [virtualbox](https://www.virtualbox.org) 6.1 are both required to be installed on the host machine.
+Development dependencies are limited to [vagrant](https://www.vagrantup.com) and [virtualbox](https://www.virtualbox.org) 6.1. Both required to be installed on the host machine.
 
-#### VM Provisioning and Use
+#### Virtual Machine Provisioning and Use
 
-This section highlights some useful Vagrant commands. **All commands are intended to run from repository root**. For a more exhausive list, see the official [documentation]() or simply run `vagrant` without any arguments.
+This section highlights some useful Vagrant commands. **All commands are intended to run from repository root**. For a more exhaustive list, see the official [documentation](https://www.vagrantup.com/docs/cli) or simply run `vagrant` without any arguments.
 
 Provision a VM using VirtualBox as the default VM manager by running the following command from repository root:
 
@@ -56,7 +60,7 @@ i
 
 ### Running the tool
 
-The tool's functionality is exposed via an `Invoke` interfaced, aliased as `a` to reduce typing necessary to leverage the necessary dependency manager (`pipenv`).
+The tool's functionality is exposed via an `Invoke` interface, aliased as `a` to reduce typing necessary to leverage the necessary dependency manager (`pipenv`).
 
 ```bash
 a --list
@@ -69,6 +73,8 @@ a --list
 Run `a --help [task]` to see which arguments are expected.
 
 #### Count `tensorflow` Imports
+
+This example uses a repository featuring `tensorflow` imports in Python code. The arguments are passed explicitly, but may also be referenced positionally:
 
 ```bash
 a run --organization=aymericdamien --repository=TensorFlow-Examples
@@ -85,6 +91,8 @@ a run --organization=aymericdamien --repository=TensorFlow-Examples
 The output shows modules sorted by count in the specified repository.
 
 #### Run tests
+
+Run repository tests as follows:
 
 ```bash
 a test
