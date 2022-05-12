@@ -4,6 +4,8 @@ This utility counts `import`s of the `tensorflow` module within Python codebases
 
 The tool analyzes one repository at a time.
 
+Notes about the project's implementation and guiding assumptions are [documented](ABOUT.md).
+
 ## Use
 This section describes how to use the tool.
 
