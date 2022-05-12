@@ -1,1 +1,8 @@
+# Vagrant
 .vagrant
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
